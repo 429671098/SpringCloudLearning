@@ -1,0 +1,20 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8769
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+#      service-id: service-ribbon   用服务id 为啥不行 ？？？
+      url: http://localhost:8764   # 必须要知道服务器地址，只实现了代理转发，不能实现负载均衡，熔段功能
+    api-b:
+      path: /api-b/**
+#      serviceId: service-feign
+      url: http://localhost:8765
